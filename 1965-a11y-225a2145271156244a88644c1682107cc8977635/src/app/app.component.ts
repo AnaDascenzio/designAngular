@@ -1,4 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -15,11 +15,15 @@ export class AppComponent {
 
   constructor(formBuilder: FormBuilder){
     this.form = formBuilder.group({
-      yesNoAnswer: ['no']
+      yesNoAnswer: [{
+        value: null,
+        disabled: false
+      }]
     });
   }
 
   public submit(): void{
+    this.form.get('yesNoAnswer').disable();
     console.log(this.form.value);
   }
 }
